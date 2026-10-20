@@ -1,0 +1,1610 @@
+﻿@{
+    Layout = null;
+}
+code.html
+%100
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Murat Yücedağ — Yazılım Geliştiricisi & Eğitmen</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    :root {
+      --bg-primary: #F7F5F0;
+      --bg-secondary: #EBE7DF;
+      --text-primary: #292D2B;
+      --text-muted: #777B76;
+      --accent-sage: #91A99B;
+      --accent-sage-dark: #6e8879;
+      --accent-sage-soft: rgba(145, 169, 155, 0.15);
+      --accent-terracotta: #C58D79;
+      --accent-terracotta-soft: rgba(197, 141, 121, 0.15);
+      --card-bg: #FFFEFB;
+      --border-color: rgba(41, 45, 43, 0.08);
+      --shadow-subtle: 0 10px 30px -10px rgba(41, 45, 43, 0.05);
+      --shadow-hover: 0 20px 40px -15px rgba(41, 45, 43, 0.1);
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6, .font-heading {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      letter-spacing: -0.025em;
+      color: var(--text-primary);
+    }
+
+    /* Fixed Navigation */
+    .site-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1030;
+      padding: 1.25rem 0;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      background-color: transparent;
+    }
+
+    .site-navbar.scrolled {
+      padding: 0.85rem 0;
+      background-color: rgba(247, 245, 240, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    }
+
+    .navbar-brand-custom {
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .navbar-brand-custom .dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-sage);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .nav-link-custom {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      font-weight: 500;
+      padding: 0.4rem 0.85rem;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    .nav-link-custom:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-link-custom.active {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .nav-link-custom.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0.85rem;
+      right: 0.85rem;
+      height: 2px;
+      background-color: var(--accent-sage);
+      border-radius: 2px;
+    }
+
+    /* Buttons */
+    .btn-sage {
+      background-color: var(--accent-sage);
+      color: #FFFFFF;
+      font-weight: 600;
+      font-size: 0.92rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 9999px;
+      border: 1px solid transparent;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .btn-sage:hover {
+      background-color: var(--accent-sage-dark);
+      color: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(145, 169, 155, 0.3);
+    }
+
+    .btn-secondary-custom {
+      background-color: transparent;
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 0.92rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 9999px;
+      border: 1px solid var(--border-color);
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-secondary-custom:hover {
+      background-color: #FFFFFF;
+      color: var(--text-primary);
+      border-color: rgba(41, 45, 43, 0.2);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-subtle);
+    }
+
+    /* Hero Section */
+    #home {
+      min-height: 100vh;
+      padding-top: 140px;
+      padding-bottom: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .eyebrow-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-sage-dark);
+      background-color: var(--accent-sage-soft);
+      padding: 0.4rem 0.9rem;
+      border-radius: 9999px;
+      margin-bottom: 1.5rem;
+    }
+
+    .eyebrow-badge-terracotta {
+      color: #9c604d;
+      background-color: var(--accent-terracotta-soft);
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      color: var(--text-primary);
+    }
+
+    .typewriter-wrapper {
+      font-size: clamp(1.35rem, 2.5vw, 2.1rem);
+      font-weight: 700;
+      color: var(--accent-sage-dark);
+      margin-bottom: 1.5rem;
+      min-height: 2.8rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1.3em;
+      background-color: var(--accent-sage);
+      margin-left: 4px;
+      vertical-align: middle;
+      animation: blink 0.9s infinite;
+    }
+
+    @@keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .hero-lead {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      line-height: 1.7;
+      margin-bottom: 2.25rem;
+    }
+
+    .hero-portrait-frame {
+      position: relative;
+      border-radius: var(--radius-xl);
+      padding: 14px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.7), rgba(235, 231, 223, 0.4));
+      border: 1px solid rgba(255,255,255,0.8);
+      box-shadow: 0 25px 50px -12px rgba(41, 45, 43, 0.08);
+    }
+
+    .hero-portrait-img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      border-radius: calc(var(--radius-xl) - 10px);
+      filter: saturate(1.02);
+    }
+
+    .floating-badge {
+      position: absolute;
+      background: rgba(255, 254, 251, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(41, 45, 43, 0.08);
+      padding: 1rem 1.35rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-hover);
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      z-index: 5;
+    }
+
+    .floating-badge-bottom {
+      bottom: -20px;
+      left: -20px;
+    }
+
+    .floating-badge-top {
+      top: 30px;
+      right: -20px;
+    }
+
+    .social-pill {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #FFFFFF;
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      transition: all 0.2s ease;
+      text-decoration: none;
+      font-size: 1.05rem;
+    }
+
+    .social-pill:hover {
+      background: var(--text-primary);
+      color: #FFFFFF;
+      transform: translateY(-2px);
+    }
+
+    .scroll-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .scroll-indicator:hover {
+      color: var(--text-primary);
+    }
+
+    .scroll-mouse {
+      width: 20px;
+      height: 32px;
+      border: 2px solid var(--text-muted);
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      padding-top: 4px;
+    }
+
+    .scroll-dot {
+      width: 3px;
+      height: 6px;
+      background-color: var(--text-muted);
+      border-radius: 2px;
+      animation: scrollAnim 1.8s infinite;
+    }
+
+    @@keyframes scrollAnim {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(10px); opacity: 0; }
+    }
+
+    /* Section Global Styles */
+    section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .section-header {
+      margin-bottom: 3.5rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3.2vw, 2.75rem);
+      font-weight: 800;
+      margin-bottom: 0.85rem;
+    }
+
+    .section-description {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 600px;
+    }
+
+    /* About Section */
+    .about-img-wrap {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-subtle);
+      border: 1px solid var(--border-color);
+    }
+
+    .stat-number {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2.5rem, 4vw, 3.25rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 0.35rem;
+    }
+
+    /* Skills Cards */
+    .skill-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      height: 100%;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(145, 169, 155, 0.4);
+    }
+
+    .skill-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--bg-secondary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+    }
+
+    .tech-badge {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      padding: 0.32rem 0.75rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(41, 45, 43, 0.06);
+      margin: 0.2rem 0.15rem;
+      transition: all 0.2s ease;
+    }
+
+    .tech-badge:hover {
+      background: #FFFFFF;
+      border-color: var(--accent-sage);
+      color: var(--accent-sage-dark);
+    }
+
+    /* Experience Timeline */
+    .timeline-container {
+      position: relative;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 31px;
+      top: 15px;
+      bottom: 25px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent-sage) 0%, rgba(145, 169, 155, 0.2) 100%);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 80px;
+      margin-bottom: 3rem;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-marker {
+      position: absolute;
+      left: 20px;
+      top: 6px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 3px solid var(--accent-sage);
+      box-shadow: 0 0 0 4px var(--accent-sage-soft);
+      z-index: 2;
+    }
+
+    .timeline-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.85rem;
+      box-shadow: var(--shadow-subtle);
+      transition: all 0.25s ease;
+    }
+
+    .timeline-card:hover {
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(41, 45, 43, 0.15);
+    }
+
+    /* Projects Section */
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 0.45rem 1.15rem;
+      border-radius: 9999px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .filter-btn:hover {
+      color: var(--text-primary);
+      border-color: rgba(41, 45, 43, 0.2);
+    }
+
+    .filter-btn.active {
+      background: var(--text-primary);
+      color: #FFFFFF;
+      border-color: var(--text-primary);
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-subtle);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .project-card:hover .project-thumb-img {
+      transform: scale(1.04);
+    }
+
+    .project-thumb-wrap {
+      position: relative;
+      height: 240px;
+      overflow: hidden;
+      background: var(--bg-secondary);
+    }
+
+    .project-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .project-category-tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.3rem 0.75rem;
+      border-radius: 9999px;
+      color: var(--text-primary);
+    }
+
+    .project-body {
+      padding: 1.85rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    /* Philosophy Banner */
+    .philosophy-section {
+      background-color: #262B28;
+      color: #F7F5F0;
+      padding: 90px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .philosophy-quote {
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.35;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+    }
+
+    /* Contact Form */
+    .form-control-custom {
+      background-color: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem 1.1rem;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      transition: all 0.2s ease;
+    }
+
+    .form-control-custom:focus {
+      background-color: #FFFFFF;
+      border-color: var(--accent-sage);
+      outline: none;
+      box-shadow: 0 0 0 3px var(--accent-sage-soft);
+      color: var(--text-primary);
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--bg-secondary);
+      padding: 60px 0 35px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .back-to-top-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .back-to-top-btn:hover {
+      background: var(--text-primary);
+      color: #FFFFFF;
+      transform: translateY(-3px);
+    }
+
+    /* Animations & Scroll Reveal */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-on-scroll.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @@media (prefers-reduced-motion: reduce) {
+      .reveal-on-scroll {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .project-card:hover .project-thumb-img {
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed Navigation Bar -->
+  <header>
+    <nav class="site-navbar" id="mainNavbar">
+      <div class="container d-flex align-items-center justify-content-between">
+        <a class="navbar-brand-custom" href="#home">
+          <span>Murat Yücedağ</span>
+          <span class="dot"></span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <div class="d-none d-lg-flex align-items-center gap-1">
+          <a class="nav-link-custom active" href="#home">Ana Sayfa</a>
+          <a class="nav-link-custom" href="#about">Hakkımda</a>
+          <a class="nav-link-custom" href="#skills">Yeteneklerim</a>
+          <a class="nav-link-custom" href="#experience">Deneyimlerim</a>
+          <a class="nav-link-custom" href="#projects">Projelerim</a>
+          <a class="nav-link-custom" href="#education">Eğitim</a>
+          <a class="nav-link-custom" href="#contact">İletişim</a>
+        </div>
+
+        <div class="d-flex align-items-center gap-3">
+          <a href="#contact" class="btn-sage d-none d-sm-inline-flex">
+            <span>Birlikte Çalışalım</span>
+            <i class="bi bi-arrow-right"></i>
+          </a>
+
+          <!-- Mobile Toggle Button -->
+          <button class="btn btn-outline-secondary d-lg-none border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu" aria-expanded="false" aria-label="Menüyü Aç/Kapat">
+            <i class="bi bi-list fs-3 text-dark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Collapsible Menu -->
+      <div class="collapse d-lg-none" id="mobileMenu">
+        <div class="container pt-3 pb-4 bg-white rounded-4 shadow-lg mt-3 border">
+          <div class="d-flex flex-column gap-2">
+            <a class="nav-link-custom py-2 mobile-nav-link" href="#home">Ana Sayfa</a>
+            <a class="nav-link-custom py-2 mobile-nav-link" href="#about">Hakkımda</a>
+            <a class="nav-link-custom py-2 mobile-nav-link" href="#skills">Yeteneklerim</a>
+            <a class="nav-link-custom py-2 mobile-nav-link" href="#experience">Deneyimlerim</a>
+            <a class="nav-link-custom py-2 mobile-nav-link" href="#projects">Projelerim</a>
+            <a class="nav-link-custom py-2 mobile-nav-link" href="#education">Eğitim</a>
+            <a class="nav-link-custom py-2 mobile-nav-link" href="#contact">İletişim</a>
+            <div class="pt-2">
+              <a href="#contact" class="btn-sage w-100 justify-content-center mobile-nav-link">
+                <span>Birlikte Çalışalım</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 4. Hero Section -->
+    <section id="home">
+      <div class="container">
+        <div class="row align-items-center gy-5">
+          <!-- Left Column -->
+          <div class="col-lg-7 reveal-on-scroll is-revealed">
+            <div class="eyebrow-badge">
+              <i class="bi bi-hand-wave-fill"></i> MERHABA, BEN MURAT
+            </div>
+            
+            <h1 class="hero-title">
+              Fikirleri Dijital Deneyimlere Dönüştürüyorum.
+            </h1>
+
+            <div class="typewriter-wrapper">
+              <span id="typewriterText"></span><span class="typing-cursor"></span>
+            </div>
+
+            <p class="hero-lead">
+              Modern yazılım teknolojileriyle yenilikçi çözümler geliştiriyor, bilgi ve deneyimlerimi paylaşarak teknoloji dünyasına değer katıyorum.
+            </p>
+
+            <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+              <a href="#projects" class="btn-sage">
+                <span>Projelerimi Keşfet</span>
+                <i class="bi bi-arrow-down-right"></i>
+              </a>
+              <a href="#contact" class="btn-secondary-custom">
+                <span>Benimle İletişime Geç</span>
+                <i class="bi bi-chat-text"></i>
+              </a>
+            </div>
+
+            <!-- Social Links -->
+            <div class="d-flex align-items-center gap-2 pt-2">
+              <span class="text-muted small me-2 font-heading fw-semibold">Takip Et:</span>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-pill" title="GitHub">
+                <i class="bi bi-github"></i>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-pill" title="LinkedIn">
+                <i class="bi bi-linkedin"></i>
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-pill" title="YouTube">
+                <i class="bi bi-youtube"></i>
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-pill" title="Instagram">
+                <i class="bi bi-instagram"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="col-lg-5 reveal-on-scroll is-revealed">
+            <div class="position-relative mx-auto" style="max-width: 440px;">
+              <div class="hero-portrait-frame">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOoGFL_RUXVi18KeTYZHtpMvWTtuGQlha2lSBEJIb3UBD2AHmHUMcwWkQuBFy2Ih2G3UQdItXjfmoP7gBHBbjDYT0TyYqrhY0j_ZslJZF6gFDTY3UEE3z56G-mss_yPIXrKHzkT6NmYtiU0oNmOWhuVL11uNPnRc-VMnSg-ZRgxS00UWdSipCRY2Dwo_lCXz0hBr0-rvvqSsoFJDYHrmyVLWyIbSRsdGcs24JgjX_388FLX_3wUEy8" alt="Murat Yücedağ — Yazılım Geliştiricisi ve Eğitmen" class="hero-portrait-img">
+              </div>
+
+              <!-- Floating Experience Badge -->
+              <div class="floating-badge floating-badge-bottom">
+                <div class="skill-icon-box mb-0" style="width: 42px; height: 42px; background: var(--accent-sage-soft); color: var(--accent-sage-dark);">
+                  <i class="bi bi-award-fill"></i>
+                </div>
+                <div>
+                  <div class="fw-bold font-heading fs-6">10+ Yıllık</div>
+                  <div class="text-muted small">Yazılım Deneyimi</div>
+                </div>
+              </div>
+
+              <!-- Subtle Top Badge -->
+              <div class="floating-badge floating-badge-top d-none d-sm-flex">
+                <div class="skill-icon-box mb-0" style="width: 38px; height: 38px; background: var(--accent-terracotta-soft); color: var(--accent-terracotta);">
+                  <i class="bi bi-people-fill"></i>
+                </div>
+                <div>
+                  <div class="fw-bold font-heading small">200K+ Öğrenci</div>
+                  <div class="text-muted" style="font-size: 0.72rem;">Online Topluluk</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="text-center mt-5 pt-4">
+          <a href="#about" class="scroll-indicator">
+            <div class="scroll-mouse">
+              <div class="scroll-dot"></div>
+            </div>
+            <span>Aşağı Kaydır</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. About Me Section -->
+    <section id="about" class="bg-white border-top border-bottom">
+      <div class="container">
+        <div class="row align-items-center gy-5">
+          <!-- Left Column: Portrait and visual composition -->
+          <div class="col-lg-5 reveal-on-scroll">
+            <div class="about-img-wrap">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOoGFL_RUXVi18KeTYZHtpMvWTtuGQlha2lSBEJIb3UBD2AHmHUMcwWkQuBFy2Ih2G3UQdItXjfmoP7gBHBbjDYT0TyYqrhY0j_ZslJZF6gFDTY3UEE3z56G-mss_yPIXrKHzkT6NmYtiU0oNmOWhuVL11uNPnRc-VMnSg-ZRgxS00UWdSipCRY2Dwo_lCXz0hBr0-rvvqSsoFJDYHrmyVLWyIbSRsdGcs24JgjX_388FLX_3wUEy8" alt="Murat Yücedağ portre" class="w-100" style="height: 540px; object-fit: cover; object-position: center top;">
+              <div class="p-3 bg-light border-top d-flex align-items-center justify-content-between">
+                <span class="small text-muted font-heading">Murat Yücedağ, İstanbul</span>
+                <span class="badge bg-secondary-subtle text-dark fw-medium">Senior Developer</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Story & Stats -->
+          <div class="col-lg-7 ps-lg-5 reveal-on-scroll">
+            <div class="eyebrow-badge">
+              <i class="bi bi-person-lines-fill"></i> BENİ TANIYIN
+            </div>
+            <h2 class="section-title">
+              Teknolojiye Tutkuyla Bağlı Bir Yolculuk.
+            </h2>
+            <div class="text-muted fs-5 mb-4 lh-base">
+              <p class="mb-3">
+                Merhaba, ben <strong>Murat Yücedağ</strong>. Yazılım geliştirme, yazılım eğitimi ve modern teknolojiler üzerine çalışan bir yazılım geliştiricisiyim. Özellikle <strong>.NET ekosistemi</strong>, yazılım mimarileri ve yapay zeka destekli uygulamalar geliştirme alanlarında çalışmalar yürütüyorum.
+              </p>
+              <p class="mb-4">
+                Teknolojinin yalnızca kod yazmaktan ibaret olmadığına; aynı zamanda problem çözmek, değer üretmek ve bilgiyi paylaşmak olduğuna inanıyorum. Geliştirdiğim projeler ve hazırladığım eğitimlerle yazılım dünyasına katkı sağlamayı hedefliyorum.
+              </p>
+            </div>
+
+            <!-- Statistics -->
+            <div class="row g-4 pt-2 pb-4 border-top border-bottom mb-4">
+              <div class="col-4">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Yıl Deneyim</div>
+              </div>
+              <div class="col-4">
+                <div class="stat-number">25+</div>
+                <div class="stat-label">Eğitim İçeriği</div>
+              </div>
+              <div class="col-4">
+                <div class="stat-number">200K+</div>
+                <div class="stat-label">Öğrenci</div>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-center gap-3">
+              <a href="#" class="btn-sage" onclick="alert('Özgeçmiş PDF dosyası hazırlandı.'); return false;">
+                <i class="bi bi-file-earmark-pdf"></i>
+                <span>Özgeçmişimi İncele</span>
+              </a>
+              <a href="#contact" class="btn-secondary-custom">
+                <span>Bana Ulaşın</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Skills Section -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-header text-center mx-auto reveal-on-scroll" style="max-width: 680px;">
+          <div class="eyebrow-badge">
+            <i class="bi bi-stack"></i> TEKNOLOJİ YIĞINIM
+          </div>
+          <h2 class="section-title">
+            Kullandığım Teknolojiler ve Uzmanlık Alanlarım
+          </h2>
+          <p class="section-description mx-auto">
+            Bir fikrin hayata geçirilmesinden ölçeklenebilir bir yazılım ürününe dönüşmesine kadar farklı teknolojilerle çalışıyorum.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Category 1: Backend -->
+          <div class="col-md-6 col-lg-4 reveal-on-scroll">
+            <div class="skill-card">
+              <div class="skill-icon-box">
+                <i class="bi bi-server"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">Backend Geliştirme</h3>
+              <p class="text-muted small mb-4">Yüksek performanslı, güvenilir ve sürdürülebilir kurumsal sunucu taraflı mimariler.</p>
+              <div class="d-flex flex-wrap">
+                <span class="tech-badge">C#</span>
+                <span class="tech-badge">ASP.NET Core</span>
+                <span class="tech-badge">Web API</span>
+                <span class="tech-badge">Entity Framework Core</span>
+                <span class="tech-badge">Dapper</span>
+                <span class="tech-badge">LINQ</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 2: Frontend -->
+          <div class="col-md-6 col-lg-4 reveal-on-scroll">
+            <div class="skill-card">
+              <div class="skill-icon-box">
+                <i class="bi bi-layout-wtf"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">Frontend Teknolojileri</h3>
+              <p class="text-muted small mb-4">Temiz, erişilebilir, duyarlı ve modern tarayıcı standartlarına uygun kullanıcı arayüzleri.</p>
+              <div class="d-flex flex-wrap">
+                <span class="tech-badge">HTML5</span>
+                <span class="tech-badge">CSS3</span>
+                <span class="tech-badge">Bootstrap</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">Responsive Web Design</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 3: Databases -->
+          <div class="col-md-6 col-lg-4 reveal-on-scroll">
+            <div class="skill-card">
+              <div class="skill-icon-box">
+                <i class="bi bi-database"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">Veritabanı Teknolojileri</h3>
+              <p class="text-muted small mb-4">İlişkisel ve NoSQL veritabanı modelleme, indeksleme ve önbellekleme stratejileri.</p>
+              <div class="d-flex flex-wrap">
+                <span class="tech-badge">Microsoft SQL Server</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">MongoDB</span>
+                <span class="tech-badge">Redis</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 4: Software Architecture -->
+          <div class="col-md-6 col-lg-4 reveal-on-scroll">
+            <div class="skill-card">
+              <div class="skill-icon-box">
+                <i class="bi bi-diagram-3"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">Yazılım Mimarileri</h3>
+              <p class="text-muted small mb-4">Ölçeklenebilir, test edilebilir ve endüstri standardı modern kodlama tasarım desenleri.</p>
+              <div class="d-flex flex-wrap">
+                <span class="tech-badge">Clean Architecture</span>
+                <span class="tech-badge">Onion Architecture</span>
+                <span class="tech-badge">Microservices</span>
+                <span class="tech-badge">CQRS</span>
+                <span class="tech-badge">Repository Pattern</span>
+                <span class="tech-badge">SOLID Principles</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 5: AI & Integrations -->
+          <div class="col-md-6 col-lg-4 reveal-on-scroll">
+            <div class="skill-card">
+              <div class="skill-icon-box">
+                <i class="bi bi-cpu"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">Yapay Zeka & Entegrasyonlar</h3>
+              <p class="text-muted small mb-4">Büyük dil modelleri, otonom yapay zeka ajanları ve akıllı sistem entegrasyonları.</p>
+              <div class="d-flex flex-wrap">
+                <span class="tech-badge">OpenAI API</span>
+                <span class="tech-badge">Google Gemini</span>
+                <span class="tech-badge">Claude AI</span>
+                <span class="tech-badge">Prompt Engineering</span>
+                <span class="tech-badge">AI Agents</span>
+                <span class="tech-badge">REST API Integrations</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 6: Tools & Processes -->
+          <div class="col-md-6 col-lg-4 reveal-on-scroll">
+            <div class="skill-card">
+              <div class="skill-icon-box">
+                <i class="bi bi-gear-wide-connected"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">Araçlar & Süreçler</h3>
+              <p class="text-muted small mb-4">Versiyon kontrolü, konteynerleştirme, sürekli entegrasyon ve çevik proje yönetimi.</p>
+              <div class="d-flex flex-wrap">
+                <span class="tech-badge">Git & GitHub</span>
+                <span class="tech-badge">Docker</span>
+                <span class="tech-badge">Postman</span>
+                <span class="tech-badge">Visual Studio</span>
+                <span class="tech-badge">Agile / Scrum</span>
+                <span class="tech-badge">CI/CD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Professional Experience Section -->
+    <section id="experience" class="bg-white border-top border-bottom">
+      <div class="container">
+        <div class="section-header text-center mx-auto reveal-on-scroll" style="max-width: 650px;">
+          <div class="eyebrow-badge eyebrow-badge-terracotta">
+            <i class="bi bi-briefcase-fill"></i> KARİYER YOLCULUĞUM
+          </div>
+          <h2 class="section-title">
+            Deneyimlerim ve Profesyonel Yolculuğum
+          </h2>
+          <p class="section-description mx-auto">
+            Yazılım geliştirme, kurumsal bankacılık test süreçleri ve teknoloji eğitimi alanlarındaki tecrübelerim.
+          </p>
+        </div>
+
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+
+          <!-- Timeline Item 1 -->
+          <div class="timeline-item reveal-on-scroll">
+            <div class="timeline-marker"></div>
+            <div class="timeline-card">
+              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                <h3 class="h5 fw-bold mb-0">Yazılım Eğitmeni ve Kurucu</h3>
+                <span class="badge bg-success-subtle text-success-emphasis fw-medium px-3 py-2 rounded-pill">Aktif</span>
+              </div>
+              <div class="text-muted fw-semibold small mb-3 font-heading">
+                <i class="bi bi-building me-1"></i> M&Y Yazılım Eğitim Akademi
+              </div>
+              <p class="text-muted mb-0">
+                Yazılım geliştirme alanında uygulamalı eğitim programları, proje tabanlı bootcamp süreçleri ve kariyer odaklı teknoloji eğitimleri.
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="timeline-item reveal-on-scroll">
+            <div class="timeline-marker"></div>
+            <div class="timeline-card">
+              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                <h3 class="h5 fw-bold mb-0">Yazılım Test Mühendisi</h3>
+                <span class="badge bg-secondary-subtle text-secondary-emphasis fw-medium px-3 py-2 rounded-pill">Kurumsal Bankacılık</span>
+              </div>
+              <div class="text-muted fw-semibold small mb-3 font-heading">
+                <i class="bi bi-building me-1"></i> Yapı Kredi
+              </div>
+              <p class="text-muted mb-0">
+                Kurumsal bankacılık uygulamalarında yazılım test süreçleri, test otomasyonu, kalite güvence ve çevik geliştirme metodolojileri.
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline Item 3 -->
+          <div class="timeline-item reveal-on-scroll">
+            <div class="timeline-marker"></div>
+            <div class="timeline-card">
+              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                <h3 class="h5 fw-bold mb-0">Teknoloji İçerik Üreticisi</h3>
+                <span class="badge bg-secondary-subtle text-secondary-emphasis fw-medium px-3 py-2 rounded-pill">Eğitim & Medya</span>
+              </div>
+              <div class="text-muted fw-semibold small mb-3 font-heading">
+                <i class="bi bi-play-circle me-1"></i> YouTube ve Udemy
+              </div>
+              <p class="text-muted mb-0">
+                .NET teknolojileri, yazılım geliştirme ve modern uygulama mimarileri üzerine kapsamlı eğitim içeriklerinin hazırlanması.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Featured Projects Section -->
+    <section id="projects">
+      <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4 gap-3 reveal-on-scroll">
+          <div>
+            <div class="eyebrow-badge">
+              <i class="bi bi-folder-check"></i> SEÇİLMİŞ ÇALIŞMALAR
+            </div>
+            <h2 class="section-title mb-1">
+              Fikirden Ürüne Dönüşen Projeler
+            </h2>
+            <p class="section-description mb-0">
+              Öğrenme, üretme ve problem çözme süreçlerimin birer yansıması olan projelerimden bazıları.
+            </p>
+          </div>
+
+          <!-- Filter Buttons -->
+          <div class="d-flex flex-wrap gap-2" id="projectFilters">
+            <button class="filter-btn active" data-filter="all">Tümü</button>
+            <button class="filter-btn" data-filter="web">Web Uygulamaları</button>
+            <button class="filter-btn" data-filter="ai">Yapay Zeka</button>
+            <button class="filter-btn" data-filter="mobile">Mobil</button>
+            <button class="filter-btn" data-filter="microservices">Mikroservisler</button>
+          </div>
+        </div>
+
+        <!-- Project Grid -->
+        <div class="row g-4" id="projectGrid">
+          <!-- Project 1: AI Travel Assistant -->
+          <div class="col-lg-6 project-item reveal-on-scroll" data-category="ai web">
+            <div class="project-card">
+              <div class="project-thumb-wrap">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1gZJs_U2YiOQIR5mnZfZQhk69l0J1t4KX1skTA1nf6ScbSR2jKax_uA0cjYpML1P329_5ob3neM5V6FA8UG-h5TVzdc-lG9TtWsrgwuUNRZYKyLPchpomRHp4KxTdXS-Q9aE698Qj3JKm_sujki7qvlEwyF6uVSEWbd99t86o8fF3p2kVXJ8-p4lsR-p0GFzkNNc0KRVhgQNx1bTY63Cc3VQiPHywioukY4cwSNcLnrBpzDGhlk23" alt="Yapay Zeka Destekli Seyahat Asistanı" class="project-thumb-img">
+                <span class="project-category-tag">Yapay Zeka & Web</span>
+              </div>
+              <div class="project-body">
+                <h3 class="h4 fw-bold mb-2">1. Yapay Zeka Destekli Seyahat Asistanı</h3>
+                <p class="text-muted small mb-4 flex-grow-1">
+                  Yapay zeka servisleri ve gerçek zamanlı veri entegrasyonlarıyla kişiselleştirilmiş seyahat önerileri sunan uygulama.
+                </p>
+                <div class="mb-4">
+                  <span class="tech-badge">ASP.NET Core</span>
+                  <span class="tech-badge">Web API</span>
+                  <span class="tech-badge">OpenAI</span>
+                  <span class="tech-badge">SQL Server</span>
+                </div>
+                <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+                  <a href="#contact" class="btn-sage btn-sm">
+                    <span>Projeyi İncele</span>
+                    <i class="bi bi-arrow-up-right"></i>
+                  </a>
+                  <span class="text-muted small"><i class="bi bi-git me-1"></i>Açık Kaynak</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: Microservices E-Commerce -->
+          <div class="col-lg-6 project-item reveal-on-scroll" data-category="microservices web">
+            <div class="project-card">
+              <div class="project-thumb-wrap" style="background: #e9edea;">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1gZJs_U2YiOQIR5mnZfZQhk69l0J1t4KX1skTA1nf6ScbSR2jKax_uA0cjYpML1P329_5ob3neM5V6FA8UG-h5TVzdc-lG9TtWsrgwuUNRZYKyLPchpomRHp4KxTdXS-Q9aE698Qj3JKm_sujki7qvlEwyF6uVSEWbd99t86o8fF3p2kVXJ8-p4lsR-p0GFzkNNc0KRVhgQNx1bTY63Cc3VQiPHywioukY4cwSNcLnrBpzDGhlk23" alt="Mikroservis E-Ticaret Platformu" class="project-thumb-img" style="filter: hue-rotate(25deg);">
+                <span class="project-category-tag">Mikroservis Mimarisi</span>
+              </div>
+              <div class="project-body">
+                <h3 class="h4 fw-bold mb-2">2. Mikroservis E-Ticaret Platformu</h3>
+                <p class="text-muted small mb-4 flex-grow-1">
+                  Bağımsız servisler, dağıtık sistem bileşenleri ve modern backend teknolojileriyle geliştirilen e-ticaret altyapısı.
+                </p>
+                <div class="mb-4">
+                  <span class="tech-badge">.NET</span>
+                  <span class="tech-badge">Microservices</span>
+                  <span class="tech-badge">Docker</span>
+                  <span class="tech-badge">Redis</span>
+                </div>
+                <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+                  <a href="#contact" class="btn-sage btn-sm">
+                    <span>Projeyi İncele</span>
+                    <i class="bi bi-arrow-up-right"></i>
+                  </a>
+                  <span class="text-muted small"><i class="bi bi-shield-check me-1"></i>Production Ready</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: Smart Sales Analytics -->
+          <div class="col-lg-6 project-item reveal-on-scroll" data-category="ai web">
+            <div class="project-card">
+              <div class="project-thumb-wrap" style="background: #f0e9e4;">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1gZJs_U2YiOQIR5mnZfZQhk69l0J1t4KX1skTA1nf6ScbSR2jKax_uA0cjYpML1P329_5ob3neM5V6FA8UG-h5TVzdc-lG9TtWsrgwuUNRZYKyLPchpomRHp4KxTdXS-Q9aE698Qj3JKm_sujki7qvlEwyF6uVSEWbd99t86o8fF3p2kVXJ8-p4lsR-p0GFzkNNc0KRVhgQNx1bTY63Cc3VQiPHywioukY4cwSNcLnrBpzDGhlk23" alt="Akıllı Satış Analiz Platformu" class="project-thumb-img" style="filter: sepia(0.2);">
+                <span class="project-category-tag">Makine Öğrenmesi & Web</span>
+              </div>
+              <div class="project-body">
+                <h3 class="h4 fw-bold mb-2">3. Akıllı Satış Analiz Platformu</h3>
+                <p class="text-muted small mb-4 flex-grow-1">
+                  Veri analizi ve makine öğrenmesi teknikleriyle satış eğilimlerini analiz eden ve tahminler üreten yönetim platformu.
+                </p>
+                <div class="mb-4">
+                  <span class="tech-badge">ASP.NET Core</span>
+                  <span class="tech-badge">ML.NET</span>
+                  <span class="tech-badge">SQL Server</span>
+                </div>
+                <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+                  <a href="#contact" class="btn-sage btn-sm">
+                    <span>Projeyi İncele</span>
+                    <i class="bi bi-arrow-up-right"></i>
+                  </a>
+                  <span class="text-muted small"><i class="bi bi-graph-up me-1"></i>Analitik</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4: Mobile Travel Booking -->
+          <div class="col-lg-6 project-item reveal-on-scroll" data-category="mobile">
+            <div class="project-card">
+              <div class="project-thumb-wrap" style="background: #e2e8e5;">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1gZJs_U2YiOQIR5mnZfZQhk69l0J1t4KX1skTA1nf6ScbSR2jKax_uA0cjYpML1P329_5ob3neM5V6FA8UG-h5TVzdc-lG9TtWsrgwuUNRZYKyLPchpomRHp4KxTdXS-Q9aE698Qj3JKm_sujki7qvlEwyF6uVSEWbd99t86o8fF3p2kVXJ8-p4lsR-p0GFzkNNc0KRVhgQNx1bTY63Cc3VQiPHywioukY4cwSNcLnrBpzDGhlk23" alt="Mobil Seyahat Rezervasyon Uygulaması" class="project-thumb-img" style="filter: brightness(0.95);">
+                <span class="project-category-tag">Mobil Uygulama</span>
+              </div>
+              <div class="project-body">
+                <h3 class="h4 fw-bold mb-2">4. Mobil Seyahat Rezervasyon Uygulaması</h3>
+                <p class="text-muted small mb-4 flex-grow-1">
+                  Modern mobil arayüzler ve dinamik rezervasyon süreçleriyle oluşturulan kullanıcı odaklı seyahat uygulaması.
+                </p>
+                <div class="mb-4">
+                  <span class="tech-badge">.NET MAUI</span>
+                  <span class="tech-badge">C#</span>
+                  <span class="tech-badge">SQLite</span>
+                </div>
+                <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+                  <a href="#contact" class="btn-sage btn-sm">
+                    <span>Projeyi İncele</span>
+                    <i class="bi bi-arrow-up-right"></i>
+                  </a>
+                  <span class="text-muted small"><i class="bi bi-phone me-1"></i>Cross-Platform</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-5">
+          <a href="#contact" class="btn-secondary-custom px-4 py-3">
+            <span>Tüm Projelerimi Gör</span>
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Education Section -->
+    <section id="education" class="bg-white border-top border-bottom">
+      <div class="container">
+        <div class="row gy-5">
+          <!-- Left: Timeline -->
+          <div class="col-lg-7 reveal-on-scroll">
+            <div class="eyebrow-badge">
+              <i class="bi bi-mortarboard-fill"></i> AKADEMİK YOLCULUK
+            </div>
+            <h2 class="section-title mb-4">
+              Eğitim Hayatım
+            </h2>
+
+            <div class="d-flex flex-column gap-4">
+              <!-- Degree 1 -->
+              <div class="p-4 rounded-4 border bg-light">
+                <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                  <h3 class="h5 fw-bold mb-0">Yüksek Lisans — İnternet ve Bilişim Teknolojileri Yönetimi</h3>
+                  <span class="badge bg-secondary-subtle text-dark">Akademik</span>
+                </div>
+                <p class="text-muted small mb-0">
+                  Yapay zeka ajanları, büyük dil modelleri ve akıllı sistemler üzerine akademik çalışmalar.
+                </p>
+              </div>
+
+              <!-- Degree 2 -->
+              <div class="p-4 rounded-4 border bg-light">
+                <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                  <h3 class="h5 fw-bold mb-0">Ön Lisans — Turizm ve Seyahat Hizmetleri</h3>
+                  <span class="badge bg-secondary-subtle text-dark">Mezuniyet</span>
+                </div>
+                <div class="text-muted fw-semibold small mb-2 font-heading">
+                  Anadolu Üniversitesi
+                </div>
+                <p class="text-muted small mb-0">
+                  Kişilerarası iletişim, kriz yönetimi ve analitik problem çözme yetkinliklerinin temeli.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Learning Philosophy Quote -->
+          <div class="col-lg-5 ps-lg-4 d-flex align-items-center reveal-on-scroll">
+            <div class="p-4 p-md-5 rounded-4 border w-100" style="background-color: var(--bg-primary);">
+              <i class="bi bi-quote fs-1 text-muted opacity-50"></i>
+              <blockquote class="fs-4 fw-bold font-heading my-3 text-dark">
+                "Öğrenmek bir varış noktası değil, sürekli devam eden bir yolculuktur."
+              </blockquote>
+              <p class="text-muted small mb-0 lh-lg">
+                Yazılım dünyasındaki hızlı dönüşüm; sürekli araştırmayı, yeni paradigmaları benimsemeyi ve edinilen bilgi birikimini cömertçe paylaşmayı gerektirir.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. Personal Philosophy Section -->
+    <section class="philosophy-section text-center">
+      <div class="container">
+        <div class="mx-auto reveal-on-scroll" style="max-width: 820px;">
+          <div class="mb-3 text-secondary" style="font-size: 2.5rem; line-height: 1;">
+            <i class="bi bi-code-slash text-light opacity-50"></i>
+          </div>
+          <p class="philosophy-quote mb-4">
+            "İyi yazılım yalnızca çalışan kod değil, gerçek bir probleme üretilmiş anlamlı bir çözümdür."
+          </p>
+          <div class="d-inline-flex align-items-center gap-2 text-white-50 small font-heading">
+            <span class="w-12 h-px bg-white-50"></span>
+            <span>Murat Yücedağ — Yazılım Felsefesi</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. Contact Section -->
+    <section id="contact">
+      <div class="container">
+        <div class="row gy-5">
+          <!-- Left Column: Contact Info -->
+          <div class="col-lg-5 reveal-on-scroll">
+            <div class="eyebrow-badge">
+              <i class="bi bi-envelope-paper-fill"></i> İLETİŞİME GEÇELİM
+            </div>
+            <h2 class="section-title">
+              Harika Bir Fikrin mi Var? Birlikte Hayata Geçirelim.
+            </h2>
+            <p class="text-muted mb-4 fs-6">
+              Yeni projeler, eğitimler, iş birlikleri veya yalnızca teknoloji üzerine sohbet etmek için benimle iletişime geçebilirsin.
+            </p>
+
+            <div class="d-flex flex-column gap-3 mb-4">
+              <div class="d-flex align-items-center gap-3 p-3 bg-white border rounded-3 shadow-sm">
+                <div class="skill-icon-box mb-0" style="width: 44px; height: 44px; background: var(--bg-secondary);">
+                  <i class="bi bi-envelope"></i>
+                </div>
+                <div>
+                  <div class="text-muted small">E-posta</div>
+                  <div class="fw-semibold">murat.yucedag@example.com</div>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-center gap-3 p-3 bg-white border rounded-3 shadow-sm">
+                <div class="skill-icon-box mb-0" style="width: 44px; height: 44px; background: var(--bg-secondary);">
+                  <i class="bi bi-geo-alt"></i>
+                </div>
+                <div>
+                  <div class="text-muted small">Konum</div>
+                  <div class="fw-semibold">İstanbul, Türkiye</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social links -->
+            <div class="pt-2">
+              <div class="text-muted small font-heading fw-semibold mb-2">Sosyal Ağlar:</div>
+              <div class="d-flex gap-2">
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-pill" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-pill" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-pill" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-pill" title="Instagram"><i class="bi bi-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Form -->
+          <div class="col-lg-7 ps-lg-5 reveal-on-scroll">
+            <div class="bg-white p-4 p-md-5 rounded-4 border shadow-sm">
+              <form id="contactForm" onsubmit="event.preventDefault(); validateForm();">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="fullName" class="form-label small fw-semibold">Adınız Soyadınız *</label>
+                    <input type="text" class="form-control form-control-custom" id="fullName" placeholder="Örn: Ahmet Yılmaz" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="emailAddr" class="form-label small fw-semibold">E-posta Adresiniz *</label>
+                    <input type="email" class="form-control form-control-custom" id="emailAddr" placeholder="ad@ornek.com" required>
+                  </div>
+                  <div class="col-12">
+                    <label for="subject" class="form-label small fw-semibold">Konu</label>
+                    <input type="text" class="form-control form-control-custom" id="subject" placeholder="Örn: Kurumsal .NET Eğitimi veya Danışmanlık">
+                  </div>
+                  <div class="col-12">
+                    <label for="message" class="form-label small fw-semibold">Mesajınız *</label>
+                    <textarea class="form-control form-control-custom" id="message" rows="5" placeholder="Projeniz veya sorunuz hakkında detayları paylaşın..." required></textarea>
+                  </div>
+                  <div class="col-12 pt-2">
+                    <button type="submit" class="btn-sage w-100 justify-content-center py-3 fs-6">
+                      <i class="bi bi-send-fill"></i>
+                      <span>Mesajımı Gönder</span>
+                    </button>
+                    <div id="formFeedback" class="mt-2 text-center small text-muted"></div>
+                    <div class="text-muted text-center small mt-3" style="font-size: 0.78rem;">
+                      <i class="bi bi-shield-check me-1"></i> Gönderilen bilgiler gizlilik ilkeleri doğrultusunda korunmaktadır.
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 12. Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row align-items-center justify-content-between pb-4 border-bottom gap-3">
+        <div>
+          <a class="navbar-brand-custom" href="#home">
+            <span>Murat Yücedağ.</span>
+          </a>
+          <p class="text-muted small mb-0 mt-1">Kod, yaratıcılık ve sürekli öğrenme.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="d-flex gap-3">
+          <a href="#home" class="text-decoration-none text-muted small fw-medium">Ana Sayfa</a>
+          <a href="#about" class="text-decoration-none text-muted small fw-medium">Hakkımda</a>
+          <a href="#projects" class="text-decoration-none text-muted small fw-medium">Projelerim</a>
+          <a href="#contact" class="text-decoration-none text-muted small fw-medium">İletişim</a>
+        </div>
+
+        <button class="back-to-top-btn" id="backToTop" title="Yukarı Çık">
+          <i class="bi bi-arrow-up"></i>
+        </button>
+      </div>
+
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pt-3 gap-2">
+        <div class="text-muted small">
+          © 2026 Murat Yücedağ. Tüm hakları saklıdır.
+        </div>
+        <div class="d-flex gap-2">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-muted small text-decoration-none me-2"><i class="bi bi-github"></i> GitHub</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-muted small text-decoration-none me-2"><i class="bi bi-linkedin"></i> LinkedIn</a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="text-muted small text-decoration-none me-2"><i class="bi bi-youtube"></i> YouTube</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-muted small text-decoration-none"><i class="bi bi-instagram"></i> Instagram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Vanilla JavaScript for Interactivity -->
+  <script>
+    // 1. Typewriter Animation for Hero Section
+    (function initTypewriter() {
+      const phrases = [
+        "Yazılım Geliştiricisi",
+        ".NET Eğitmeni",
+        "Teknoloji İçerik Üreticisi",
+        "Yapay Zeka Meraklısı",
+        "Yazılım Mimarı"
+      ];
+      const targetElement = document.getElementById("typewriterText");
+      if (!targetElement) return;
+
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      const typeSpeed = 80;
+      const deleteSpeed = 40;
+      const delayBetween = 1800;
+
+      function typeCycle() {
+        const currentPhrase = phrases[phraseIndex];
+        if (isDeleting) {
+          targetElement.textContent = currentPhrase.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          targetElement.textContent = currentPhrase.substring(0, charIndex + 1);
+          charIndex++;
+        }
+
+        if (!isDeleting && charIndex === currentPhrase.length) {
+          setTimeout(() => {
+            isDeleting = true;
+            typeCycle();
+          }, delayBetween);
+          return;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          setTimeout(typeCycle, 300);
+          return;
+        }
+
+        setTimeout(typeCycle, isDeleting ? deleteSpeed : typeSpeed);
+      }
+
+      typeCycle();
+    })();
+
+    // 2. Fixed Navbar on Scroll
+    window.addEventListener("scroll", function() {
+      const navbar = document.getElementById("mainNavbar");
+      if (window.scrollY > 40) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+
+    // 3. Active Nav Link on Scroll Spy
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav-link-custom");
+
+    function updateActiveNav() {
+      const scrollY = window.pageYOffset;
+      sections.forEach(current => {
+        const sectionHeight = current.offsetHeight;
+        const sectionTop = current.offsetTop - 120;
+        const sectionId = current.getAttribute("id");
+
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+          navLinks.forEach(link => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === "#" + sectionId) {
+              link.classList.add("active");
+            }
+          });
+        }
+      });
+    }
+    window.addEventListener("scroll", updateActiveNav);
+
+    // 4. Mobile Menu Auto-close on click
+    document.querySelectorAll(".mobile-nav-link").forEach(link => {
+      link.addEventListener("click", () => {
+        const mobileMenu = document.getElementById("mobileMenu");
+        if (mobileMenu && mobileMenu.classList.contains("show")) {
+          const bsCollapse = bootstrap.Collapse.getInstance(mobileMenu);
+          if (bsCollapse) bsCollapse.hide();
+        }
+      });
+    });
+
+    // 5. Project Filtering (Vanilla JS)
+    const filterButtons = document.querySelectorAll("#projectFilters .filter-btn");
+    const projectItems = document.querySelectorAll("#projectGrid .project-item");
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const filterValue = btn.getAttribute("data-filter");
+        projectItems.forEach(item => {
+          const categories = item.getAttribute("data-category") || "";
+          if (filterValue === "all" || categories.includes(filterValue)) {
+            item.style.display = "block";
+            item.style.opacity = "1";
+          } else {
+            item.style.display = "none";
+            item.style.opacity = "0";
+          }
+        });
+      });
+    });
+
+    // 6. Back to Top Button
+    const backToTopBtn = document.getElementById("backToTop");
+    if (backToTopBtn) {
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    // 7. Intersection Observer for Scroll Reveals
+    const revealElements = document.querySelectorAll(".reveal-on-scroll");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-revealed");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: "0px 0px -40px 0px"
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // 8. Contact Form Client-side Validation (ready for ASP.NET Core)
+    function validateForm() {
+      const name = document.getElementById("fullName").value.trim();
+      const email = document.getElementById("emailAddr").value.trim();
+      const message = document.getElementById("message").value.trim();
+      const feedback = document.getElementById("formFeedback");
+
+      if (!name || !email || !message) {
+        feedback.innerHTML = '<span class="text-danger">Lütfen tüm zorunlu alanları doldurun.</span>';
+        return;
+      }
+
+      const emailRegex = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
+      if (!emailRegex.test(email)) {
+        feedback.innerHTML = '<span class="text-danger">Geçerli bir e-posta adresi giriniz.</span>';
+        return;
+      }
+
+      feedback.innerHTML = '<span class="text-success"><i class="bi bi-check-circle me-1"></i> Form doğrulandı. (ASP.NET Core Controller entegrasyonu için hazırdır)</span>';
+    }
+  </script>
+</body>
+</html>
