@@ -2,7 +2,7 @@
 
 namespace MYAcademy_PortfolioProject.NewFolder.ViewComponents.DefaultViewComponents
 {
-    public class DefaultStyleComponentPartial : ViewComponent
+    public class _DefaultStyleComponentPartial : ViewComponent
     {
             public IViewComponentResult Invoke()
         {
