@@ -8,13 +8,14 @@
     <tr>
         <th>#</th>
         <th>Kategori Adı</th>
+        <th>İşlemler</th>
     </tr>
     @foreach (var category in Model)
     {
         <tr>
             <td>@category.CategoryId</td>
             <td>@category.CategoryName</td>
-
+            <td><a asp-action="UpdateCategory" asp-route-id="@category.CategoryId" class="btn btn-sm btn-success">Güncelle</a></td>
         </tr>
         }
 </table>

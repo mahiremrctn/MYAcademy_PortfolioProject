@@ -33,5 +33,40 @@ namespace MYAcademy_PortfolioProject.Areas.Admin.Controllers
             _context.SaveChanges();
             return RedirectToAction("CategoryList");
         }
+        [HttpGet]
+        public IActionResult UpdateCategory(int id)
+        {
+            var category = _context.Categories.Find(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return View(category);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateCategory(Category category)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(category);
+            }
+            _context.Categories.Update(category);
+            _context.SaveChanges();
+            return RedirectToAction("CategoryList");
+        }
+        //[HttpGet]
+        //public IActionResult DeleteCategory(int id)
+        //{
+        //    var category = _context.Categories.Find(id);
+        //    if (category == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    _context.Categories.Remove(category);
+        //    _context.SaveChanges();
+        //    return RedirectToAction("CategoryList");
+        //}
     }
 }
