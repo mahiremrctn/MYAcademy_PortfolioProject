@@ -4,6 +4,12 @@
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
 <div>
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
     <table class="table table-bordered">
     <tr>
         <th>#</th>
@@ -15,7 +21,12 @@
         <tr>
             <td>@category.CategoryId</td>
             <td>@category.CategoryName</td>
-            <td><a asp-action="UpdateCategory" asp-route-id="@category.CategoryId" class="btn btn-sm btn-success">Güncelle</a></td>
+                <td>
+                    <a asp-action="UpdateCategory" asp-route-id="@category.CategoryId" class="btn btn-sm btn-success">Güncelle</a><form asp-action="DeleteCategory" asp-route-id="@category.CategoryId" method="post" style="display:inline;" onsubmit="return confirm('Bu kategoriyi silmek istediğinize emin misiniz?');">
+                        <button type="submit" class="btn btn-sm btn-danger">Sil</button>
+                    </form>
+                </td>
+            
         </tr>
         }
 </table>

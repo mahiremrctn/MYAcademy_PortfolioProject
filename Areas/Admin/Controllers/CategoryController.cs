@@ -56,17 +56,24 @@ namespace MYAcademy_PortfolioProject.Areas.Admin.Controllers
             _context.SaveChanges();
             return RedirectToAction("CategoryList");
         }
-        //[HttpGet]
-        //public IActionResult DeleteCategory(int id)
-        //{
-        //    var category = _context.Categories.Find(id);
-        //    if (category == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    _context.Categories.Remove(category);
-        //    _context.SaveChanges();
-        //    return RedirectToAction("CategoryList");
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteCategory(int id)
+        {
+            var category = _context.Categories.Find(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            bool hasProjects = _context.Projects.Any(p => p.CategoryId == id);
+            if (hasProjects)
+            {
+                TempData["ErrorMessage"] = "Bu kategoriye bağlı projeler olduğu için silinemez.";
+                return RedirectToAction("CategoryList");
+            }
+            _context.Categories.Remove(category);
+            _context.SaveChanges();
+            return RedirectToAction("CategoryList");
+        }
     }
 }
