@@ -1,0 +1,41 @@
+﻿@model Project
+@{
+    ViewData["Title"] = "Proje Ekle";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+<div class="container">
+    <h4>Yeni Proje</h4>
+    <form method="post">
+        <div class="mb-3">
+            <label asp-for="ProjectTitle" class="form-label">Proje Adı</label>
+            <input asp-for="ProjectTitle" class="form-control" />
+            <span asp-validation-for="ProjectTitle" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">Açıklama</label>
+            <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Technologies" class="form-label">Teknolojiler</label>
+            <input asp-for="Technologies" class="form-control" placeholder="Örn: C#, ASP.NET Core, SQL" />
+            <span asp-validation-for="Technologies" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="CategoryId" class="form-label">Kategori</label>
+            <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-select">
+                <option value="0">-- Kategori seçiniz --</option>
+            </select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ImageUrl" class="form-label">Görsel Yolu (geçici)</label>
+            <input asp-for="ImageUrl" class="form-control" />
+        </div>
+        <div class="form-check mb-3">
+            <input asp-for="IsActive" class="form-check-input" />
+            <label asp-for="IsActive" class="form-check-label">Aktif</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Projeyi Kaydet</button>
+    </form>
+</div>

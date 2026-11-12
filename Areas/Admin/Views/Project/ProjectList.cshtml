@@ -10,13 +10,28 @@
             <th>#</th>
             <th>Proje Adı</th>
             <th>Kategori</th>
+            <th>Teknolojiler</th>
+            <th>Eklenme Tarihi</th>
+            <th>Durum</th>
         </tr>
         @foreach (var project in Model)
         {
             <tr>
                 <td>@project.ProjectId</td>
                 <td>@project.ProjectTitle</td>
-                <td>@project.Category.CategoryName</td>
+                <td>@project.Category?.CategoryName</td>
+                <td>@project.Technologies</td>
+                <td>@project.CreatedDate.ToString("dd.MM.yyyy")</td>
+                <td>
+                    @if (project.IsActive)
+                    {
+                        <span class="badge bg-success">Aktif</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Pasif</span>
+                    }
+                </td>
             </tr>
         }
     </table>
