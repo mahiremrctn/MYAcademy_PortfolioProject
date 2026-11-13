@@ -1222,4 +1222,29 @@
             justify-content: space-between;
         }
     }
+
+    .fab-add {
+        position: fixed;
+        right: 32px;
+        bottom: 32px;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background-color: var(--accent-primary);
+        color: #fff;
+        font-size: 1.6rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+        text-decoration: none;
+        z-index: 1000;
+        transition: transform 0.2s, background-color 0.2s;
+    }
+
+        .fab-add:hover {
+            background-color: var(--accent-primary-hover);
+            color: #fff;
+            transform: scale(1.08);
+        }
 </style>

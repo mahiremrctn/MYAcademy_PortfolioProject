@@ -5,6 +5,9 @@
 }
 <div class="container">
     <br />
+    <a asp-action="CreateProject" class="fab-add" title="Yeni Proje Ekle" aria-label="Yeni Proje Ekle">
+        <i class="bi bi-plus-lg"></i>
+    </a>
     <table class="table table-bordered">
         <tr>
             <th>#</th>
@@ -36,7 +39,7 @@
                 <td>
                     <a asp-action="UpdateProject" asp-route-id="@project.ProjectId" class="btn btn-sm btn-success">Güncelle</a>
                     <form asp-action="DeleteProject" asp-route-id="@project.ProjectId" method="post" style="display:inline;"
-                          onsubmit="return confirm('Bu projeyi silmek istediğinize emin misiniz?');">
+                          class="delete-form" data-message="Bu proje kalıcı olarak silinecek.">
                         <button type="submit" class="btn btn-sm btn-danger">Sil</button>
                     </form>
                 </td>

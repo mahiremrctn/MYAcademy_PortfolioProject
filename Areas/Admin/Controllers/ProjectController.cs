@@ -38,6 +38,7 @@ namespace MYAcademy_PortfolioProject.Areas.Admin.Controllers
             project.CreatedDate = DateTime.Now;
             _context.Projects.Add(project);
             _context.SaveChanges();
+            TempData["SuccessMessage"] = "Proje başarıyla eklendi.";
             return RedirectToAction("ProjectList");
         }
         [HttpGet]
@@ -72,6 +73,7 @@ namespace MYAcademy_PortfolioProject.Areas.Admin.Controllers
             existingProject.CategoryId = project.CategoryId;
             existingProject.IsActive = project.IsActive;
             _context.SaveChanges();
+            TempData["SuccessMessage"] = "Proje başarıyla güncellendi.";
             return RedirectToAction("ProjectList");
         }
         [HttpPost]
@@ -84,6 +86,7 @@ namespace MYAcademy_PortfolioProject.Areas.Admin.Controllers
             }
             _context.Projects.Remove(project);
             _context.SaveChanges();
+            TempData["SuccessMessage"] = "Proje başarıyla silindi.";
             return RedirectToAction("ProjectList");
         }
     }

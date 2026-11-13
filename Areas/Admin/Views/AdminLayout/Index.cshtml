@@ -21,7 +21,11 @@
    @RenderBody()
   </div>
 </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/delete-confirm.js"></script>
+    <div id="notification" data-success="@TempData["SuccessMessage"]" data-error="@TempData["ErrorMessage"]"></div>
+    <script src="~/js/notification.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
     @await Component.InvokeAsync("_AdminLayoutScriptComponentPartial")
 </body>
 </html>

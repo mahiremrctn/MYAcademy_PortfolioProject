@@ -31,6 +31,7 @@ namespace MYAcademy_PortfolioProject.Areas.Admin.Controllers
             }
             _context.Categories.Add(category);
             _context.SaveChanges();
+            TempData["SuccessMessage"] = "Kategori başarıyla eklendi.";
             return RedirectToAction("CategoryList");
         }
         [HttpGet]
@@ -54,6 +55,7 @@ namespace MYAcademy_PortfolioProject.Areas.Admin.Controllers
             }
             _context.Categories.Update(category);
             _context.SaveChanges();
+            TempData["SuccessMessage"] = "Kategori başarıyla güncellendi.";
             return RedirectToAction("CategoryList");
         }
         [HttpPost]
@@ -73,6 +75,7 @@ namespace MYAcademy_PortfolioProject.Areas.Admin.Controllers
             }
             _context.Categories.Remove(category);
             _context.SaveChanges();
+            TempData["SuccessMessage"] = "Kategori başarıyla silindi.";
             return RedirectToAction("CategoryList");
         }
     }
