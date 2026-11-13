@@ -40,5 +40,51 @@ namespace MYAcademy_PortfolioProject.Areas.Admin.Controllers
             _context.SaveChanges();
             return RedirectToAction("ProjectList");
         }
+        [HttpGet]
+        public IActionResult UpdateProject(int id)
+        {
+            var project = _context.Projects.Find(id);
+            if (project == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Categories = new SelectList(_context.Categories.ToList(), "CategoryId", "CategoryName");
+            return View(project);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateProject(Project project)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Categories = new SelectList(_context.Categories.ToList(), "CategoryId", "CategoryName");
+                return View(project);
+            }
+            var existingProject = _context.Projects.Find(project.ProjectId);
+            if (existingProject == null)
+            {
+                return NotFound();
+            }
+            existingProject.ProjectTitle = project.ProjectTitle;
+            existingProject.Description = project.Description;
+            existingProject.Technologies = project.Technologies;
+            existingProject.ImageUrl = project.ImageUrl;
+            existingProject.CategoryId = project.CategoryId;
+            existingProject.IsActive = project.IsActive;
+            _context.SaveChanges();
+            return RedirectToAction("ProjectList");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteProject(int id) {
+            var project = _context.Projects.Find(id);
+            if (project == null)
+            {
+                return NotFound();
+            }
+            _context.Projects.Remove(project);
+            _context.SaveChanges();
+            return RedirectToAction("ProjectList");
+        }
     }
-}
+    }

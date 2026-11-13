@@ -13,6 +13,7 @@
             <th>Teknolojiler</th>
             <th>Eklenme Tarihi</th>
             <th>Durum</th>
+            <th>İşlemler</th>
         </tr>
         @foreach (var project in Model)
         {
@@ -31,6 +32,13 @@
                     {
                         <span class="badge bg-secondary">Pasif</span>
                     }
+                </td>
+                <td>
+                    <a asp-action="UpdateProject" asp-route-id="@project.ProjectId" class="btn btn-sm btn-success">Güncelle</a>
+                    <form asp-action="DeleteProject" asp-route-id="@project.ProjectId" method="post" style="display:inline;"
+                          onsubmit="return confirm('Bu projeyi silmek istediğinize emin misiniz?');">
+                        <button type="submit" class="btn btn-sm btn-danger">Sil</button>
+                    </form>
                 </td>
             </tr>
         }
