@@ -11,6 +11,7 @@
     <table class="table table-bordered">
         <tr>
             <th>#</th>
+            <th>Görsel</th>
             <th>Proje Adı</th>
             <th>Kategori</th>
             <th>Teknolojiler</th>
@@ -22,6 +23,16 @@
         {
             <tr>
                 <td>@project.ProjectId</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(project.ImageUrl))
+                    {
+                        <img src="@project.ImageUrl" alt="@project.ProjectTitle" class="project-thumb" />
+                    }
+                    else
+                    {
+                        <span class="text-muted">Görsel yok</span>
+                    }
+                </td>
                 <td>@project.ProjectTitle</td>
                 <td>@project.Category?.CategoryName</td>
                 <td>@project.Technologies</td>

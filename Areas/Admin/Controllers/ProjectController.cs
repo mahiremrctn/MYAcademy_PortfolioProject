@@ -9,9 +9,11 @@ namespace MYAcademy_PortfolioProject.Areas.Admin.Controllers
     public class ProjectController : Controller
     {
         private readonly PortfolioContext _context;
-        public ProjectController(PortfolioContext context)
+        private readonly IWebHostEnvironment _env;
+        public ProjectController(PortfolioContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
         public IActionResult ProjectList()
         {
@@ -28,12 +30,17 @@ namespace MYAcademy_PortfolioProject.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateProject(Project project)
+        public IActionResult CreateProject(Project project, IFormFile? imageFile)
         {
+            ValidateImage(imageFile);
             if (!ModelState.IsValid)
             {
                 ViewBag.Categories = new SelectList(_context.Categories.ToList(), "CategoryId", "CategoryName");
                 return View(project);
+            }
+            if (imageFile != null)
+            {
+                project.ImageUrl = SaveImage(imageFile);
             }
             project.CreatedDate = DateTime.Now;
             _context.Projects.Add(project);
@@ -54,8 +61,9 @@ namespace MYAcademy_PortfolioProject.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult UpdateProject(Project project)
+        public IActionResult UpdateProject(Project project, IFormFile? imageFile)
         {
+            ValidateImage(imageFile);
             if (!ModelState.IsValid)
             {
                 ViewBag.Categories = new SelectList(_context.Categories.ToList(), "CategoryId", "CategoryName");
@@ -66,13 +74,19 @@ namespace MYAcademy_PortfolioProject.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            string? oldImageUrl = null;
+            if (imageFile != null)
+            {
+                oldImageUrl = existingProject.ImageUrl;
+                existingProject.ImageUrl = SaveImage(imageFile);
+            }
             existingProject.ProjectTitle = project.ProjectTitle;
             existingProject.Description = project.Description;
             existingProject.Technologies = project.Technologies;
-            existingProject.ImageUrl = project.ImageUrl;
             existingProject.CategoryId = project.CategoryId;
             existingProject.IsActive = project.IsActive;
             _context.SaveChanges();
+            DeleteImage(oldImageUrl);
             TempData["SuccessMessage"] = "Proje başarıyla güncellendi.";
             return RedirectToAction("ProjectList");
         }
@@ -86,8 +100,51 @@ namespace MYAcademy_PortfolioProject.Areas.Admin.Controllers
             }
             _context.Projects.Remove(project);
             _context.SaveChanges();
+            DeleteImage(project.ImageUrl);
             TempData["SuccessMessage"] = "Proje başarıyla silindi.";
             return RedirectToAction("ProjectList");
+        }
+        private void ValidateImage(IFormFile? imageFile)
+        {
+            if (imageFile == null)
+            {
+                return;
+            }
+            var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".webp" };
+            var extension = Path.GetExtension(imageFile.FileName).ToLower();
+            if (!allowedExtensions.Contains(extension))
+            {
+                ModelState.AddModelError("imageFile", "Sadece .jpg, .jpeg, .png veya .webp dosyaları yüklenebilir.");
+            }
+            if (imageFile.Length > 2 * 1024 * 1024)
+            {
+                ModelState.AddModelError("imageFile", "Görsel en fazla 2 MB olabilir.");
+            }
+        }
+        private string SaveImage(IFormFile imageFile)
+        {
+            var extension = Path.GetExtension(imageFile.FileName).ToLower();
+            var fileName = Guid.NewGuid().ToString() + extension;
+            var folderPath = Path.Combine(_env.WebRootPath, "images", "projects");
+            Directory.CreateDirectory(folderPath);
+            var filePath = Path.Combine(folderPath, fileName);
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                imageFile.CopyTo(stream);
+            }
+            return "/images/projects/" + fileName;
+        }
+        private void DeleteImage(string? imageUrl)
+        {
+            if (string.IsNullOrEmpty(imageUrl))
+            {
+                return;
+            }
+            var filePath = Path.Combine(_env.WebRootPath, imageUrl.TrimStart('/'));
+            if (System.IO.File.Exists(filePath))
+            {
+                System.IO.File.Delete(filePath);
+            }
         }
     }
     }

@@ -5,7 +5,7 @@
 }
 <div class="container">
     <h4>Projeyi Güncelle</h4>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <input type="hidden" asp-for="ProjectId" />
         <div class="mb-3">
             <label asp-for="ProjectTitle" class="form-label">Proje Adı</label>
@@ -30,8 +30,17 @@
             <span asp-validation-for="CategoryId" class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="ImageUrl" class="form-label">Görsel Yolu (geçici)</label>
-            <input asp-for="ImageUrl" class="form-control" />
+            <label for="imageFile" class="form-label">Proje Görseli</label>
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <div class="mb-2">
+                    <img src="@Model.ImageUrl" alt="Mevcut görsel" class="project-thumb" />
+                    <small class="text-muted ms-2">Değiştirmek için yeni bir dosya seçin.</small>
+                </div>
+            }
+            <input type="hidden" asp-for="ImageUrl" />
+            <input type="file" name="imageFile" id="imageFile" class="form-control" accept=".jpg,.jpeg,.png,.webp" />
+            @Html.ValidationMessage("imageFile", null, new { @class = "text-danger" })
         </div>
         <div class="form-check mb-3">
             <input asp-for="IsActive" class="form-check-input" />
