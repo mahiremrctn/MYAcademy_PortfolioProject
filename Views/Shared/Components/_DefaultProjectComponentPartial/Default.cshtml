@@ -1,0 +1,79 @@
+﻿@model List<MYAcademy_PortfolioProject.Entities.Project>
+<!-- 8. Featured Projects Section -->
+<section id="projects">
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4 gap-3 reveal-on-scroll">
+            <div>
+                <div class="eyebrow-badge">
+                    <i class="bi bi-folder-check"></i> SEÇİLMİŞ ÇALIŞMALAR
+                </div>
+                <h2 class="section-title mb-1">
+                    Fikirden Ürüne Dönüşen Projeler
+                </h2>
+                <p class="section-description mb-0">
+                    Öğrenme, üretme ve problem çözme süreçlerimin birer yansıması olan projelerimden bazıları.
+                </p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="d-flex flex-wrap gap-2" id="projectFilters">
+                <button class="filter-btn active" data-filter="all">Tümü</button>
+                @foreach (var category in ViewBag.Categories)
+                {
+                    <button class="filter-btn" data-filter="@category.CategoryId">@category.CategoryName</button>
+                }
+            </div>
+        </div>
+
+        <!-- Project Grid -->
+        <div class="row g-4" id="projectGrid">
+                        @foreach (var project in Model)
+            {
+                <div class="col-lg-6 project-item reveal-on-scroll" data-category="@project.CategoryId">
+                    <div class="project-card">
+                        <div class="project-thumb-wrap">
+                            @if (!string.IsNullOrEmpty(project.ImageUrl))
+                            {
+                                <img src="@project.ImageUrl" alt="@project.ProjectTitle" class="project-thumb-img">
+                            }
+                            else
+                            {
+                                <div class="d-flex align-items-center justify-content-center h-100 text-muted">
+                                    <i class="bi bi-image fs-1"></i>
+                                </div>
+                            }
+                            <span class="project-category-tag">@project.Category?.CategoryName</span>
+                        </div>
+                        <div class="project-body">
+                            <h3 class="h4 fw-bold mb-2">@project.ProjectTitle</h3>
+                            <p class="text-muted small mb-4 flex-grow-1">@project.Description</p>
+                            <div class="mb-4">
+                                @foreach (var tech in project.Technologies.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+                                {
+                                    <span class="tech-badge">@tech</span>
+                                }
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+                                <a href="#contact" class="btn-sage btn-sm">
+                                    <span>Projeyi İncele</span>
+                                    <i class="bi bi-arrow-up-right"></i>
+                                </a>
+                                <span class="text-muted small"><i class="bi bi-calendar3 me-1"></i>@project.CreatedDate.ToString("dd.MM.yyyy")</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        @if (Model.Count == 0)
+        {
+            <p class="text-center text-muted">Henüz yayınlanmış bir proje bulunmuyor.</p>
+        }
+        <div class="text-center mt-5">
+            <a href="#contact" class="btn-secondary-custom px-4 py-3">
+                <span>Tüm Projelerimi Gör</span>
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
